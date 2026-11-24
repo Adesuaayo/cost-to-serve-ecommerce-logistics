@@ -1,0 +1,53 @@
+Orders = COUNTROWS('fact_orders')
+
+Delivered Orders = CALCULATE(COUNTROWS('fact_orders'), NOT ISBLANK('fact_orders'[delivered_at]))
+
+Item Value = SUM('fact_orders'[order_value])
+
+Freight = SUM('fact_orders'[freight_value])
+
+Freight % of Value = DIVIDE([Freight], [Item Value])
+
+Avg Freight per Order = DIVIDE([Freight], [Orders])
+
+Late Orders = CALCULATE(COUNTROWS('fact_orders'), 'fact_orders'[is_late] = TRUE())
+
+Late Rate = DIVIDE([Late Orders], [Delivered Orders])
+
+Avg Days to Deliver = AVERAGE('fact_orders'[total_days])
+
+Avg Distance = AVERAGE('fact_orders'[distance_km])
+
+Avg Review = AVERAGE('fact_orders'[review_score])
+
+Reviews = CALCULATE(COUNTROWS('fact_orders'), NOT ISBLANK('fact_orders'[review_score]))
+
+Poor Reviews = CALCULATE(COUNTROWS('fact_orders'), 'fact_orders'[is_poor_review] = TRUE())
+
+Poor Review Rate = DIVIDE([Poor Reviews], [Reviews])
+
+Dispatch Breaches = CALCULATE(COUNTROWS('fact_orders'), 'fact_orders'[seller_breached_limit] = TRUE())
+
+Breach Rate = DIVIDE([Dispatch Breaches], CALCULATE(COUNTROWS('fact_orders'), NOT ISBLANK('fact_orders'[seller_breached_limit])))
+
+Late Rate when Breached = CALCULATE([Late Rate], 'fact_orders'[seller_breached_limit] = TRUE())
+
+Late Rate when Met = CALCULATE([Late Rate], 'fact_orders'[seller_breached_limit] = FALSE())
+
+Avg Promise Days = AVERAGEX('fact_orders', DATEDIFF('fact_orders'[purchased_at], 'fact_orders'[promised_date], DAY))
+
+Promise Padding Days = [Avg Promise Days] - [Avg Days to Deliver]
+
+Late Rate at p90 = DIVIDE(COUNTROWS(FILTER('fact_orders', 'fact_orders'[total_days] > RELATED('LaneDetail'[p90]))), [Delivered Orders])
+
+Late Rate at p95 = DIVIDE(COUNTROWS(FILTER('fact_orders', 'fact_orders'[total_days] > RELATED('LaneDetail'[p95]))), [Delivered Orders])
+
+Late Rate at Target = IF(SELECTEDVALUE('ServiceTarget'[Service Target]) = 95, [Late Rate at p95], [Late Rate at p90])
+
+Promise at Target = IF(SELECTEDVALUE('ServiceTarget'[Service Target]) = 95, AVERAGEX('fact_orders', RELATED('LaneDetail'[p95])), AVERAGEX('fact_orders', RELATED('LaneDetail'[p90])))
+
+Promise Change at Target = [Promise at Target] - [Avg Promise Days]
+
+Late Orders Avoided a Year = ([Late Rate] - [Late Rate at Target]) * [Delivered Orders] * 12 / 20
+
+Poor Reviews Avoided a Year = [Late Orders Avoided a Year] * 0.5316

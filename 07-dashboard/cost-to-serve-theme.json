@@ -1,0 +1,27 @@
+{
+  "name": "Cost to serve",
+  "dataColors": ["#2a78d6", "#e34948", "#1baf7a", "#eda100", "#6250d6", "#eb6834", "#008300", "#e87ba4"],
+  "background": "#FCFCFB",
+  "foreground": "#0B0B0B",
+  "tableAccent": "#2a78d6",
+  "good": "#1baf7a",
+  "neutral": "#8A8984",
+  "bad": "#e34948",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 13, "color": "#0B0B0B" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 9, "color": "#52514E" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#0B0B0B" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#E6E5E1" } }, "radius": 6 }],
+        "visualHeader": [{ "show": false }],
+        "categoryAxis": [{ "gridlineShow": false, "labelColor": { "solid": { "color": "#52514E" } } }],
+        "valueAxis": [{ "gridlineColor": { "solid": { "color": "#E6E5E1" } }, "labelColor": { "solid": { "color": "#52514E" } } }]
+      }
+    },
+    "page": { "*": { "background": [{ "color": { "solid": { "color": "#FCFCFB" } }, "transparency": 0 }] } }
+  }
+}

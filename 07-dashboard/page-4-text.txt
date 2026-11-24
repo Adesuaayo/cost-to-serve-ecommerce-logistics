@@ -1,0 +1,48 @@
+PAGE TITLE
+Method and limitations
+
+SUBTITLE
+Page 4 of 4  ·  Read this before acting on anything in the other three pages
+
+
+TEXT BOX 1 — heading
+What this is built from
+
+TEXT BOX 1 — body
+Olist Brazilian e-commerce, 97,300 orders, 5 Jan 2017 to 29 Aug 2018, licence CC BY-NC-SA 4.0.
+Cleaned by 01_build_clean_base.sql. Every rule and its row count is in CLEANING-LOG.md.
+Item value and freight reconcile to source to the cent: 13,329,378 and 2,218,021 BRL.
+
+
+TEXT BOX 2 — heading
+What the numbers can and cannot carry
+
+TEXT BOX 2 — body
+Freight is the amount charged to the customer, not the carrier's cost. It is a cost-to-serve proxy.
+Carrier identity is absent, so renegotiation lands at lane level, not carrier level.
+No returns, refunds or service-contact costs exist here, so the cost of a late order is understated.
+Repeat purchasing is near absent (about 3% of customers), so damage runs through review score, using a published benchmark of 5 to 9 percent of revenue per star, not a measurement from this data.
+The promise rules cover the 100 lanes with 50 or more orders, which is 96.8 percent of orders. Thinner lanes keep the blanket promise, and every p90 and p95 figure on page 2 is measured on the covered orders only.
+
+
+TEXT BOX 3 — heading
+Three things found that change how the data reads
+
+TEXT BOX 3 — body
+Split shipments record the first arrival as the delivery date, so their lateness is understated. They show 1.4% late yet a 47% poor-review rate. Excluded from timing conclusions.
+Lane percentiles are computed in sample. In production, set the promise from a trailing 90-day window.
+Lateness uses timestamps. On a whole-day definition the rate is 6.8 rather than 8.1 percent.
+Promise length is counted in calendar days from purchase to the promised date, which is what a customer reads off a calendar.
+
+
+TEXT BOX 4 — heading
+What the three tests found
+
+TEXT BOX 4 — body
+A missed dispatch deadline makes a late delivery 4.71 times more likely (95% CI 4.45 to 4.98).
+Poor reviews run 9.2% when on time and 62.4% when late: a 53 point gap, relative risk 6.75.
+The promise is padded by 11.81 days (95% CI 11.74 to 11.87) and still missed one time in twelve.
+
+
+PAGE FOOTER
+Source: Olist Brazilian e-commerce, Jan 2017 to Aug 2018, 97,300 orders. Freight is charged freight, a cost-to-serve proxy. Refreshed 24 Nov 2026.

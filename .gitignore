@@ -1,0 +1,23 @@
+# Raw source data. Download from Kaggle, see README.
+02-data-raw/*
+!02-data-raw/.gitkeep
+
+# Large derived tables. Rebuilt by 05-notebooks/run_clean.py.
+03-data-clean/fact_orders.csv
+03-data-clean/fact_orders.parquet
+
+# Office and Power BI temp files
+~$*
+*.tmp
+*.pbix.bak
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+*.pyc
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store

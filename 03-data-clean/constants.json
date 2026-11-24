@@ -1,0 +1,22 @@
+{
+ "months": 20.0,
+ "delivered_orders": 96203,
+ "reviews": 95560,
+ "gmv_period": 13329377.940000001,
+ "freight_period": 2218020.78,
+ "breached_orders": 8581,
+ "late_rate_breached": 0.2475235986481762,
+ "late_rate_met": 0.06501865991029547,
+ "poor_rate_late": 0.6240200689871434,
+ "poor_rate_ontime": 0.0924401785113588,
+ "review_points_per_late": 2.0203045731863805,
+ "cur_late_rate": 0.08130723574108915,
+ "lane_coverage_orders": 93139,
+ "excess_freight_period": 47040.118518426156,
+ "peak_late_rate": 0.21362273311437954,
+ "avg_promise_today": 23.401157376837805,
+ "avg_promise_p90": 21.140508165215433,
+ "avg_promise_p95": 26.307690408958653,
+ "late_rate_p90": 0.09994739045942086,
+ "late_rate_p95": 0.050354845982885796
+}
